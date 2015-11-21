@@ -103,6 +103,13 @@ You must extend the abstract entities provided by the bundle and creating the ap
 
 	# app/config/config.yml
 
+	doctrine:
+	    orm:
+	    	entity_managers:
+	    	     default:
+	    	     	 mappings:
+	    	     	      DCSRatingBundle: ~
+	
 	dcs_rating:
         db_driver: orm
         base_path_to_redirect: / # when the permalink is not configured
