@@ -6,18 +6,15 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use DCS\RatingBundle\DCSRatingEvents;
 use DCS\RatingBundle\Event\RatingEvent;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Request;
 
 class RatingUpdateInfoEventListener implements EventSubscriberInterface
 {
-    /**
-     * @var Request
-     */
-    private $request;
+    
+    private $requestStack;
 
     public function __construct(RequestStack $requestStack)
     {
-        $this->request = $requestStack->getCurrentRequest();
+        $this->requestStack = $requestStack;
     }
 
     public static function getSubscribedEvents()
@@ -29,18 +26,18 @@ class RatingUpdateInfoEventListener implements EventSubscriberInterface
 
     public function updatePermalink(RatingEvent $event)
     {
-        if (null === $this->request) {
+        if (null === $this->requestStack) {
             return;
         }
 
         $rating = $event->getRating();
 
         if (null === $rating->getPermalink()) {
-            $rating->setPermalink($this->request->get('permalink'));
+            $rating->setPermalink($this->requestStack->getCurrentRequest()->get('permalink'));
         }
 
         if (null === $rating->getSecurityRole()) {
-            $rating->setSecurityRole($this->request->get('securityRole'));
+            $rating->setSecurityRole($this->requestStack->getCurrentRequest()->get('securityRole'));
         }
     }
 }
