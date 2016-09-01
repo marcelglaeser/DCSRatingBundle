@@ -7,6 +7,8 @@
     <mapped-superclass name="DCS\RatingBundle\Entity\Vote">
 
         <field name="value" column="value" type="integer" />
+        
+        <field name="comment" column="comment" type="string" nullable="true"/>
 
         <field name="createdAt" column="created_at" type="datetime" />
 
