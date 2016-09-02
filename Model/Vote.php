@@ -31,6 +31,13 @@ abstract class Vote implements VoteInterface
      * @var RatingInterface
      */
     protected $rating;
+    
+    /**
+     * Comment
+     *
+     * @var string
+     */
+    protected $comment;
 
     /**
      * Rating
@@ -121,6 +128,29 @@ abstract class Vote implements VoteInterface
     public function getRating()
     {
         return $this->rating;
+    }
+    
+    /**
+     * Set comment
+     *
+     * @param string $comment
+     * @return VoteInterface
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
     }
 
     /**
