@@ -56,6 +56,22 @@ interface VoteInterface
      */
     public function getRating();
 
+     /**
+     * Set comment
+     *
+     * @param string $comment
+     * @return VoteInterface
+     */
+    public function setComment($comment);
+
+    /**
+     * Get comment
+     *
+     * @return string
+     */
+    public function getComment();
+    
+    
     /**
      * Sets the owner of the vote
      *
